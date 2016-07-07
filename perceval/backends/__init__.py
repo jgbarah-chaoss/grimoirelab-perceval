@@ -26,6 +26,7 @@ from .discourse import Discourse, DiscourseCommand
 from .gerrit import Gerrit, GerritCommand
 from .git import Git, GitCommand
 from .github import GitHub, GitHubCommand
+from .gitlab import GitLab, GitLabCommand
 from .gmane import Gmane, GmaneCommand
 from .jenkins import Jenkins, JenkinsCommand
 from .jira import Jira, JiraCommand
@@ -44,6 +45,7 @@ PERCEVAL_BACKENDS = {
                      'gerrit'        : Gerrit,
                      'git'           : Git,
                      'github'        : GitHub,
+                     'gitlab'        : GitLab,
                      'gmane'         : Gmane,
                      'jenkins'       : Jenkins,
                      'jira'          : Jira,
@@ -61,6 +63,7 @@ PERCEVAL_CMDS = {
                  'gerrit'        : GerritCommand,
                  'git'           : GitCommand,
                  'github'        : GitHubCommand,
+                 'gitlab'        : GitLabCommand,
                  'gmane'         : GmaneCommand,
                  'jenkins'       : JenkinsCommand,
                  'jira'          : JiraCommand,
