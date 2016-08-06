@@ -69,31 +69,28 @@ class RateLimitError(BaseError):
 class GitLab(Backend):
     """GitLab backend for Perceval.
 
-    This class allows the fetch the issues stored in GitLab
-    repository.
+    Fetche issues corresponding to a GitLab repository (project).
 
-    :param owner: GitLab owener
-    :param repository: GitLab repository from the owner
-    :param backend_token: GitLab auth token to access the API
-    :param base_url: GitLab URL in enterprise edition case
-    :param cache: use issues already retrieved in cache
-    :param origin: identifier of the repository; when `None` or an
-        empty string are given, it will be set to the URL built
-        with the values of `base_url`, `owner` and `repository`;
-        when `base_url` is empty or `None` it will be set to
-        `GITLAB_URL` value
-    :param sleep_for_rate: sleep until rate limit is reset
+    :param             owner: GitLab owener
+    :param        repository: GitLab repository from the owner
+    :param     backend_token: GitLab auth token to access the API
+    :param          base_url: GitLab URL in enterprise edition case
+    :param             cache: use issues already retrieved in cache
+    :param            origin: identifier of the repository; when `None`
+        it will be set to `base_url` / `owner` / `repository`,
+        if `base_url` is `None` it will be set to `GITLAB_URL`
+    :param    sleep_for_rate: sleep until rate limit is reset
     :param min_rate_to_sleep: minimun rate needed to sleep until
          it will be reset
     """
-    version = '0.2.2'
-
+    version = '0.1"
 
     def __init__(self, owner=None, repository=None,
                  backend_token=None, base_url=None,
                  cache=None, origin=None,
                  sleep_for_rate=False, min_rate_to_sleep=MIN_RATE_LIMIT):
-        if not origin:
+
+        if origin is None:
             origin = base_url if base_url else GITLAB_URL
             origin = urljoin(origin, owner, repository)
 
@@ -106,7 +103,15 @@ class GitLab(Backend):
         self._users = {}  # internal users cache
 
     def __get_user(self, login):
-        """ Get user and org data for the login """
+        """Get user and org data for the login
+
+        Returns a dictionary with information about the GitLab user
+        corresponding to that login. If the login is not found via the API,
+        an empty dictionary is returned.
+
+        :param login: GitLab login to fetch
+
+        """
 
         user = {}
 
