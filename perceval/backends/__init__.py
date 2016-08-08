@@ -26,6 +26,7 @@ from .confluence import Confluence, ConfluenceCommand
 from .discourse import Discourse, DiscourseCommand
 from .gerrit import Gerrit, GerritCommand
 from .git import Git, GitCommand
+from .gitblame import GitBlame, GitBlameCommand
 from .github import GitHub, GitHubCommand
 from .gmane import Gmane, GmaneCommand
 from .jenkins import Jenkins, JenkinsCommand
@@ -49,6 +50,7 @@ PERCEVAL_BACKENDS = {
                      'discourse'     : Discourse,
                      'gerrit'        : Gerrit,
                      'git'           : Git,
+                     'gitblame'      : GitBlame,
                      'github'        : GitHub,
                      'gmane'         : Gmane,
                      'jenkins'       : Jenkins,
@@ -71,6 +73,7 @@ PERCEVAL_CMDS = {
                  'discourse'     : DiscourseCommand,
                  'gerrit'        : GerritCommand,
                  'git'           : GitCommand,
+                 'gitblame'      : GitBlameCommand,
                  'github'        : GitHubCommand,
                  'gmane'         : GmaneCommand,
                  'jenkins'       : JenkinsCommand,
